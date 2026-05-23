@@ -207,6 +207,20 @@
       background-color: #004a99;
     }
 
+    
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 2em 0;
+    }
+    
+    /* Locked state */
+    .locked {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
     @media (max-width: 480px) {
       .help-section {
         width: 100vw;
@@ -269,6 +283,13 @@
       </div>
     </div>
 
+    <div id="lockedButtons" class="button-grid">
+      <a href="teams-overview" class="btn locked">Overview of all teams</a>
+      <a href="treasure-hunt" class="btn locked">Treasure Hunt submission</a>
+      <a href="privacy-notice" class="btn locked">Privacy policy</a>
+      <a href="faq" class="btn locked">FAQ</a>
+    </div>
+  
     <div class="help-section" role="region" aria-label="Help section">
       <div class="help-icon-row">
         <svg
@@ -322,13 +343,20 @@
       const now = new Date();
       const diff = targetDate - now;
   
-      if (diff <= 0) {
-        // Countdown finished — show the GIF
+            if (diff <= 0) {
+        // Unlock online challenges
+        const buttons = document.querySelectorAll('#lockedButtons .btn');
+        buttons.forEach(btn => btn.classList.remove('locked'));
+      
+        // Replace countdown with GIF
         document.getElementById('countdown').innerHTML = `
           <div style="text-align:center;">
-            <img src="images/joe-rogan-ufc-rogan.gif" alt="Surprise GIF" style="max-width:100%; height:auto;"/>
+            <img src="images/joe-rogan-ufc-rogan.gif" 
+                 alt="Surprise GIF" 
+                 style="max-width:100%; height:auto;"/>
           </div>
         `;
+      
         clearInterval(timerInterval);
         return;
       }
