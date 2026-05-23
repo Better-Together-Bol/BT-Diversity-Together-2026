@@ -214,11 +214,10 @@
       gap: 10px;
       margin: 2em 0;
     }
+
     
-    /* Locked state */
-    .locked {
-      pointer-events: none;
-      opacity: 0.5;
+    #lockedButtons {
+      display: none;  
     }
 
     @media (max-width: 480px) {
@@ -349,8 +348,7 @@
   
             if (diff <= 0) {
         // Unlock online challenges
-        const buttons = document.querySelectorAll('#lockedButtons .btn');
-        buttons.forEach(btn => btn.classList.remove('locked'));
+        document.getElementById('lockedButtons').style.display = 'grid'
       
         // Replace countdown with GIF
         document.getElementById('countdownWrapper').innerHTML = `
