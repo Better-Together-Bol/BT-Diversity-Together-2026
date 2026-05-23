@@ -261,8 +261,10 @@
     <br>
 
    <img src="images/grandprize-v2.png" alt="Diversity Together Grand prize" class="grandprize" /> -->
-    
-    <h2>Diversity Together starts in...</h2> 
+       
+    <div id="countdownWrapper">
+      <h2>Diversity Together starts in...</h2>
+
     
     <!-- Custom Countdown Timer -->
     <div id="countdown" class="countdown" aria-live="polite" aria-label="Countdown timer">
@@ -282,6 +284,7 @@
         <div id="seconds" class="time-value">--</div>
         <div class="time-label">Seconds</div>
       </div>
+    </div>
     </div>
 
     <div id="lockedButtons" class="button-grid">
@@ -338,7 +341,7 @@
       
 
   <script>
-    const targetDate = new Date('2026-05-01T07:00:00Z'); // 09:00 Amsterdam time (UTC+2)
+    const targetDate = new Date('2026-06-01T07:00:00Z'); // 09:00 Amsterdam time (UTC+2)
   
     function updateCountdown() {
       const now = new Date();
@@ -350,7 +353,7 @@
         buttons.forEach(btn => btn.classList.remove('locked'));
       
         // Replace countdown with GIF
-        document.getElementById('countdown').innerHTML = `
+        document.getElementById('countdownWrapper').innerHTML = `
           <div style="text-align:center;">
             <img src="images/joe-rogan-ufc-rogan.gif" 
                  alt="Surprise GIF" 
