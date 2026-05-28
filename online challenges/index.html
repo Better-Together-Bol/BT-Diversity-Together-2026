@@ -2,74 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Warehouse Teams</title>
+  <title>BT Diversity Together Landing Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <script async src="https://tally.so/widgets/embed.js"></script>
   <style>
+    :root {
+      --font-h1: 2.5em;
+      --font-h2: 1.8em;
+      --font-body: 1.1em;
+      --font-small: 0.9em;
+    }
     body {
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
       color: #333;
       margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-    }
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 2em;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    h1 {
-      color: #2a2a2a;
-      margin-bottom: 1rem;
-    }
-    .table-wrapper {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
-      -ms-overflow-style: -ms-autohiding-scrollbar; /* for IE/Edge */
-      scrollbar-width: thin; /* Firefox scrollbar */
-      max-width: 100%;
-    }
-    @media (max-width: 700px) {
-      .table-wrapper {
-        overflow-x: scroll;
-      }
-    }
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0 0.5em;
-      table-layout: auto;
-    }
-    thead tr {
-      background-color: #3159ed;
-      color: white;
-      border-radius: 8px;
-      display: table-row;
-    }
-    th, td {
-      padding: 0.75em 1em;
-      text-align: left;
-      white-space: nowrap; /* prevent cell line breaks */
-    }
-    tbody tr {
-      background-color: #fafafa;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    }
-    tbody tr td:first-child {
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
-    }
-    tbody tr td:last-child {
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
-    }
-    tbody tr:nth-child(even) {
-      background-color: #f0f4ff;
     }
     .banner {
       display: block;
@@ -83,22 +31,230 @@
         object-fit: cover;
       }
     }
-    @media (max-width: 480px) {
-    table {
-      font-size: 0.85em;
+    .grandprize {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
     }
-    th, td {
-      padding: 0.5em 0.5em;
+    @media (max-width: 768px) {
+      .grandprize {
+        height: 110px;
+        object-fit: cover;
       }
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 2em;
+      text-align: center;
+    }
+    h1 {
+      font-size: var(--font-h1);
+      color: #2a2a2a;
+      margin-bottom: 0.5em;
+      font-weight: 800;
+    }
+    
+    h2 {
+      font-size: var(--font-h2);
+      font-weight: 600;
+      color: #2a2a2a;
+      margin-bottom: 0.5em;
+    }
+    
+    p {
+      font-size: var(--font-body);
+      margin-bottom: 1.5em;
+      line-height: 1.7;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      flex-wrap: wrap;
+      margin-bottom: 2em;
+    }
+    .btn {
+      background-color: #3159ed;
+      color: white;
+      text-decoration: none;
+      padding: 0.75em 1.5em;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      min-width: 150px;
+    }
+    .btn:hover {
+      background-color: #004a99;
+    }
+
+    /* Countdown container */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      margin: 2em auto;
+      user-select: none;
+    }
+    /* Each time block */
+    .time-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 70px;
+    }
+    .time-value {
+      font-size: 4em;
+      font-weight: 700;
+      color: #000;
+      line-height: 1;
+    }
+    .time-label {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #555;
+      margin-top: 0.2em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #666;
+      padding-bottom: 1em;
+    }
+
+    @media (max-width: 400px) {
+      .countdown {
+        gap: 1em;
+      }
+      .time-value {
+        font-size: 3em;
+      }
+      .time-block {
+        min-width: 50px;
+      }
+      .time-label {
+        font-size: 0.9em;
+      }
+    }
+    .help-section {
+      position: relative;
+      background-color: #f9f9f9;
+      padding: 1em 1.5em 1em 3.5em; /* leave space on left for icon */
+      border-radius: 8px;
+      color: #333;
+      font-family: 'Inter', sans-serif;
+      margin-bottom: 2em;
+    }
+    
+    .help-section svg {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+      width: 24px;
+      height: 24px;
+      fill: #3159ed;
+      margin: 0;
+      padding: 0;
+      display: block;
+    }
+    
+    /* Reduce top padding to shrink space above the icon */
+    .help-section {
+      padding-top: 0.7em;  /* adjust this value as needed */
+    }
+    
+    /* Mobile responsive: revert padding and absolute positioning */
+    @media (max-width: 480px) {
+      .help-section {
+        padding-left: 3.5em; /* keep space for icon */
+        padding-top: 1em;    /* restore a bit of top padding */
+        border-radius: 0;
+        margin-left: calc(-50vw + 50%);
+        width: 100vw;
+        box-sizing: border-box;
+      }
+    
+      .help-section svg {
+        position: absolute;
+        top: 1em;
+        left: 1em;
+      }
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 1em;
+      flex-wrap: wrap;
+      margin-bottom: 1em;
+    }
+
+    .btn {
+      background-color: #3159ed;
+      color: white;
+      text-decoration: none;
+      padding: 0.75em 1.5em;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      min-width: 150px;
+    }
+
+    .btn:hover {
+      background-color: #004a99;
+    }
+
+    
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin: 2em 0;
+    }
+
+    
+    #lockedButtons {
+      display: none;  
+    }
+
+    @media (max-width: 480px) {
+      .help-section {
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        border-radius: 0;
+        padding-left: 3.5em;
+        box-sizing: border-box;
+      }
+    
+      h1 {
+        font-size: 1.8em;
+        line-height: 1.2;
+        margin-bottom: 0.4em;
+      }
+    
+      h2 {
+        font-size: 1.4em;
+        line-height: 1.3;
+        margin-bottom: 0.4em;
+      }
+    }
+    hr.solid {
+      border-top: 3px solid #bbb;
     }
   </style>
 </head>
 <body>
 
-  <img src="../images/bt-banner.png" alt="Banner" class="banner" />
-  
+  <!-- Full-width banner -->
+  <img src="images/bt-banner.png" alt="Better Together Banner" class="banner" />
+
+  <!-- Main content -->
   <div class="container">
-    <p>Under construction...</p>
+  <p>Under construction...</p>
+    </div>
   </div>
 </body>
 </html>
