@@ -166,7 +166,15 @@
     .help-section {
       padding-top: 0.7em;  /* adjust this value as needed */
     }
-    
+
+    .cta-center {
+      text-align: center;
+      margin-left: -2em;
+    }
+    .help-header p {
+      margin: 1em 0 1em -2em;
+      text-align: center;
+    }
     /* Mobile responsive: revert padding and absolute positioning */
     @media (max-width: 480px) {
       .help-section {
@@ -279,19 +287,13 @@
     </div>
 
     <!-- Buttons to all relevant links -->
-    <div class="help-header">
+    <div class="container">
         <p>Quick links</p>
     </div>
     <div id="lockedButtons" class="button-grid">
       <a href="/online-challenges" class="btn locked">Online challenges</a>
       <a href="/treasure-hunt" class="btn locked">Treasure Hunt</a>
       <a href="/teams-overview" class="btn locked">Overview of all teams</a>
-      <!--<a href="https://tally.so/r/q4j0p5" 
-         class="btn"
-         target="_blank"
-         rel="noopener noreferrer">
-        Guess the country!
-      </a> -->
       <a href="/privacy-notice" class="btn locked">Privacy policy</a>
     </div>
   
@@ -312,7 +314,7 @@
           <p>Got a question? Check out the FAQs</p>
         </div>
         
-        <div class="btn-group">
+        <div class="cta-center">
           <a href="faq" class="btn" aria-label="Read Frequently Asked Questions">Frequently asked questions</a>
         </div>
         
