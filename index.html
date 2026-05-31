@@ -10,6 +10,7 @@
     :root {
       --font-h1: 2.5em;
       --font-h2: 1.8em;
+      --font-h3: 1.3em;
       --font-body: 1.1em;
       --font-small: 0.9em;
     }
@@ -59,6 +60,13 @@
     h2 {
       font-size: var(--font-h2);
       font-weight: 600;
+      color: #2a2a2a;
+      margin-bottom: 0.5em;
+    }
+
+    h3 {
+      font-size: var(--font-h3);
+      font-weight: 500;
       color: #2a2a2a;
       margin-bottom: 0.5em;
     }
@@ -220,12 +228,17 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin: 2em 0;
+      margin-top: -2em;
+      margin-bottom: 2em;
     }
 
-    
+    #lockedText,
     #lockedButtons {
       display: none;  
+    }
+
+    .lockedText p {
+      margin-bottom: 0.5em;
     }
 
     @media (max-width: 480px) {
@@ -287,8 +300,8 @@
     </div>
 
     <!-- Buttons to all relevant links -->
-    <div id="lockedButtons" class="container">
-        <p>Quick links</p>
+    <div id="lockedText" class="container">
+        <h3>Quick links</h3>
     </div>
     <div id="lockedButtons" class="button-grid">
       <a href="/online-challenges" class="btn locked">Online challenges</a>
@@ -354,7 +367,8 @@
   
             if (diff <= 0) {
         // Unlock online challenges
-        document.getElementById('lockedButtons').style.display = 'grid'
+        document.getElementById('lockedText').style.display = 'block';
+        document.getElementById('lockedButtons').style.display = 'grid';
       
         // Replace countdown with GIF
         document.getElementById('countdownWrapper').innerHTML = `
