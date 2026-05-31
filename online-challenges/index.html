@@ -1,341 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>BT Diversity Together Online Challenges</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
-  <script async src="https://tally.so/widgets/embed.js"></script>
-  <style>
-    :root {
-      --font-h1: 2.5em;
-      --font-h2: 1.8em;
-      --font-body: 1.1em;
-      --font-small: 0.9em;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      margin: 0;
-    }
-    .banner {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-    @media (max-width: 768px) {
-      .banner {
-        height: 110px;
-        object-fit: cover;
-      }
-    }
-    .grandprize {
-      display: block;
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-    @media (max-width: 768px) {
-      .grandprize {
-        height: 110px;
-        object-fit: cover;
-      }
-    }
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 2em;
-      text-align: center;
-    }
-    h1 {
-      font-size: var(--font-h1);
-      color: #2a2a2a;
-      margin-bottom: 0.5em;
-      font-weight: 800;
-    }
-    
-    h2 {
-      font-size: var(--font-h2);
-      font-weight: 600;
-      color: #2a2a2a;
-      margin-bottom: 0.5em;
-    }
-    
-    p {
-      font-size: var(--font-body);
-      margin-bottom: 1.5em;
-      line-height: 1.7;
-    }
-    .btn-group {
-      display: flex;
-      justify-content: center;
-      gap: 1em;
-      flex-wrap: wrap;
-      margin-bottom: 2em;
-    }
-    .btn {
-      background-color: #3159ed;
-      color: white;
-      text-decoration: none;
-      padding: 0.75em 1.5em;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-      min-width: 150px;
-    }
-    .btn:hover {
-      background-color: #004a99;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BT Diversity Together Online Challenges</title>
 
-    /* Countdown container */
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 1.5em;
-      margin: 2em auto;
-      user-select: none;
-    }
-    /* Each time block */
-    .time-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 70px;
-    }
-    .time-value {
-      font-size: 4em;
-      font-weight: 700;
-      color: #000;
-      line-height: 1;
-    }
-    .time-label {
-      font-size: 1.1em;
-      font-weight: 600;
-      color: #555;
-      margin-top: 0.2em;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #666;
-      padding-bottom: 1em;
-    }
-
-    @media (max-width: 400px) {
-      .countdown {
-        gap: 1em;
-      }
-      .time-value {
-        font-size: 3em;
-      }
-      .time-block {
-        min-width: 50px;
-      }
-      .time-label {
-        font-size: 0.9em;
-      }
-    }
-    .help-section {
-      position: relative;
-      background-color: #f9f9f9;
-      padding: 1em 1.5em 1em 3.5em; /* leave space on left for icon */
-      border-radius: 8px;
-      color: #333;
-      font-family: 'Inter', sans-serif;
-      margin-bottom: 2em;
-    }
-    
-    .help-section svg {
-      position: absolute;
-      top: 1em;
-      left: 1em;
-      width: 24px;
-      height: 24px;
-      fill: #3159ed;
-      margin: 0;
-      padding: 0;
-      display: block;
-    }
-    
-    /* Reduce top padding to shrink space above the icon */
-    .help-section {
-      padding-top: 0.7em;  /* adjust this value as needed */
-    }
-    
-    /* Mobile responsive: revert padding and absolute positioning */
-    @media (max-width: 480px) {
-      .help-section {
-        padding-left: 3.5em; /* keep space for icon */
-        padding-top: 1em;    /* restore a bit of top padding */
-        border-radius: 0;
-        margin-left: calc(-50vw + 50%);
-        width: 100vw;
-        box-sizing: border-box;
-      }
-    
-      .help-section svg {
-        position: absolute;
-        top: 1em;
-        left: 1em;
-      }
-    }
-    .btn-group {
-      display: flex;
-      justify-content: center;
-      gap: 1em;
-      flex-wrap: wrap;
-      margin-bottom: 1em;
-    }
-
-    .btn {
-      background-color: #3159ed;
-      color: white;
-      text-decoration: none;
-      padding: 0.75em 1.5em;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-      min-width: 150px;
-    }
-
-    .btn:hover {
-      background-color: #004a99;
-    }
-
-    
-    .button-grid {
-      display: grid;
-      padding: 12px;
-      column-gap: 20px;
-      gap: 10px;
-      margin: 2em auto;
-      max-width: 700px;
-    }
-    
-    .btn {
-      display: block;          
-      width: 100%;             
-      text-align: center;      
-    }
-
-    
-    #lockedButtons {
-      display: none;  
-    }
-
-    .locked {
-      opacity: 0.5;            /* faded look */
-      pointer-events: none;    /* disables clicking */
-      position: relative;
-    }
-    
-    /* Optional: add a lock overlay */
-    .locked::after {
-      content: "🔒";
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      font-size: 1.2em;
-    }
-    
-  @media (max-width: 480px) {
-      .button-grid {
-        grid-template-columns: 1fr; /* single column on small screens */
-      }
-    }
-
-  @media (max-width: 480px) {
-  .help-section {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    border-radius: 0;
-    padding-left: 3.5em;
-    box-sizing: border-box;
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    color: #333;
   }
 
-  .button-grid {
-    grid-template-columns: 1fr; /* ✅ 1 per row on mobile */
+  /* Banner */
+  .banner {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .banner {
+      height: 110px;
+      object-fit: cover;
+    }
+  }
+
+  /* Content container */
+  .container {
+    max-width: 700px;
+    margin: auto;
+    padding: 2em 1.5em;
+    text-align: center;
   }
 
   h1 {
-    font-size: 1.8em;
-    line-height: 1.2;
+    font-size: 2.2em;
     margin-bottom: 0.4em;
   }
 
-  h2 {
-    font-size: 1.4em;
-    line-height: 1.3;
-    margin-bottom: 0.4em;
+  p {
+    font-size: 1.1em;
+    margin-bottom: 1.5em;
   }
-}
-    hr.solid {
-      border-top: 3px solid #bbb;
+
+  .button-grid {
+    max-width: 700px;
+    margin: 2em auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0 1em;
+  }
+
+  @media (max-width: 480px) {
+    .button-grid {
+      grid-template-columns: 1fr;
     }
-  </style>
+  }
+
+  .btn {
+    display: block;
+    text-align: center;
+    background-color: #3159ed;
+    color: white;
+    padding: 0.75em;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+
+  .btn:hover {
+    background-color: #004a99;
+  }
+
+  .locked {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  .locked::after {
+    content: "🔒";
+    position: absolute;
+    right: 10px;
+    top: 8px;
+  }
+
+  /* Back button */
+  .back-container {
+    text-align: center;
+    margin: 2em 0;
+  }
+
+  .back-btn {
+    display: inline-block;
+    background-color: #3159ed;
+    color: white;
+    padding: 0.75em 1.5em;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .back-btn:hover {
+    background-color: #004a99;
+  }
+
+</style>
 </head>
+
 <body>
 
-  <!-- Full-width banner -->
-  <img src="../images/bt-banner.png" alt="Banner" class="banner" />
+<img src="../images/bt-banner.png" alt="Banner" class="banner">
 
-  <!-- Main content -->
-  <div class="container">
+<div class="container">
   <h1>Online Challenges</h1>
   <p>Take part in our fun diversity challenges and earn points throughout the event!</p>
-  </div>
+</div>
 
-  <!-- Buttons to all relevant links -->
-  <div class="button-grid">
-    <a href="https://tally.so/r/eqK74Q" 
-         class="btn"
-         target="_blank"
-         rel="noopener noreferrer">
-        Pixel Passport! (part 1)
-    </a>
-    <a href="https://tally.so/r/q4j0p5" 
-         class="btn"
-         target="_blank"
-         rel="noopener noreferrer">
-        Emoji GeoGuess!
-    </a>
-    <a href="https://tally.so/r/5Bp6Bb" 
-         class="btn"
-         target="_blank"
-         rel="noopener noreferrer">
-        Must eat!
-    </a>
-     <a href="https://tally.so/r/2EO09V" 
-         class="btn"
-         target="_blank"
-         rel="noopener noreferrer">
-         Who Am I?
-    </a>
-    <a href="https://tally.so/r/EkNjqA" 
-         class="btn"
-         target="_blank"
-         rel="noopener noreferrer">
-         Meme Theme: Stereotype Check!
-    </a>
-    <a href="https://tally.so/r/RG8lMj" 
-         class="btn"
-         target="_blank"
-         rel="noopener noreferrer">
-        Music Request Corner!
-    </a>
-  </div>
+<div class="button-grid">
+  <a href="https://tally.so/r/eqK74Q" target="_blank" rel="noopener noreferrer" class="btn">Pixel Passport! (part 1)</a>
+  <a href="https://tally.so/r/q4j0p5" target="_blank" rel="noopener noreferrer" class="btn">Emoji GeoGuess!</a>
+  <a href="https://tally.so/r/5Bp6Bb" target="_blank" rel="noopener noreferrer" class="btn">Must eat!</a>
+  <a href="https://tally.so/r/2EO09V" target="_blank" rel="noopener noreferrer" class="btn">Who Am I?</a>
+  <a href="https://tally.so/r/EkNjqA" target="_blank" rel="noopener noreferrer" class="btn">Meme Theme: Stereotype Check!</a>
+  <a href="https://tally.so/r/RG8lMj" target="_blank" rel="noopener noreferrer" class="btn">Music Request Corner!</a>
 
-  <div class="container">
-    <a class="btn locked">
-      More challenges soon!
-    </a>
-  </div>
-    
+  <!-- Locked button -->
+  <div class="btn locked">More challenges soon!</div>
+</div>
+
+<div class="back-container">
+  <a href="/index.html" class="back-btn">⬅ Back to Landing Page</a>
+</div>
 
 </body>
 </html>
