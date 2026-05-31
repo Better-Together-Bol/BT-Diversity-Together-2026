@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BT Summer Together Treasure Hunt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --font-h1: 2.5em;
+      --font-h2: 1.8em;
+      --font-body: 1.1em;
+      --font-small: 0.9em;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 0;
+    }
+    .banner {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    @media (max-width: 768px) {
+      .banner {
+        height: 110px;
+        object-fit: cover;
+      }
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      padding: 2em;
+      text-align: center;
+    }
+    h1 {
+      font-size: var(--font-h1);
+      color: #2a2a2a;
+      margin-bottom: 0.5em;
+      font-weight: 800;
+    }
+    h2 {
+      font-size: var(--font-h2);
+      font-weight: 600;
+      color: #2a2a2a;
+      margin-bottom: 0.5em;
+    }
+    p {
+      font-size: var(--font-body);
+      margin-bottom: 1.5em;
+      line-height: 1.7;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      margin: 2em auto;
+      user-select: none;
+    }
+    .time-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 70px;
+    }
+    .time-value {
+      font-size: 4em;
+      font-weight: 700;
+      color: #000;
+      line-height: 1;
+    }
+    .time-label {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #555;
+      margin-top: 0.2em;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #666;
+      padding-bottom: 1em;
+    }
+    @media (max-width: 400px) {
+      .countdown {
+        gap: 1em;
+      }
+      .time-value {
+        font-size: 3em;
+      }
+      .time-block {
+        min-width: 50px;
+      }
+      .time-label {
+        font-size: 0.9em;
+      }
+    }
+    @media (max-width: 480px) {
+      h1 {
+      font-size: 1.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Full-width banner -->
+  <img src="../images/bt-banner.png" alt="Summer Together Banner" class="banner" />
+
+  <div class="container"></div>
+
+  <script>
+    const firstDeadline = new Date('2026-06-09T07:00:00Z'); // 09:00 Amsterdam
+    const finalDeadline = new Date('2026-06-10T00:00:00Z'); // 02:00 Amsterdam
+
+    const container = document.querySelector('.container');
+
+    // Render countdown with days only
+    function renderDaysCountdown() {
+      container.innerHTML = `
+        <h1>Submit the Treasure Hunt sentence!</h1>
+        <p>This page becomes available in:</p>
+        <div id="countdown" class="countdown" aria-live="polite" aria-label="Countdown timer">
+          <div class="time-block">
+            <div class="time-value" id="days">--</div>
+            <div class="time-label">Days</div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render countdown with hours and minutes only (no seconds)
+    function renderHoursMinutesCountdown() {
+      container.innerHTML = `
+        <h1>Submit the Treasure Hunt sentence!</h1>
+        <p>This page becomes available in:</p>
+        <div id="countdown" class="countdown" aria-live="polite" aria-label="Countdown timer">
+          <div class="time-block">
+            <div class="time-value" id="hours">--</div>
+            <div class="time-label">Hours</div>
+          </div>
+          <div class="time-block">
+            <div class="time-value" id="minutes">--</div>
+            <div class="time-label">Minutes</div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render countdown with hours, minutes, seconds + tally form
+    function renderAfterStart() {
+      container.innerHTML = `
+        <h1>Submit the Treasure Hunt sentence!</h1>
+        <p>Time left to submit the Treasure Hunt answer:</p>
+        <div id="countdown" class="countdown" aria-live="polite" aria-label="Countdown timer">
+          <div class="time-block">
+            <div id="hours" class="time-value">--</div>
+            <div class="time-label">Hours</div>
+          </div>
+          <div class="time-block">
+            <div id="minutes" class="time-value">--</div>
+            <div class="time-label">Minutes</div>
+          </div>
+          <div class="time-block">
+            <div id="seconds" class="time-value">--</div>
+            <div class="time-label">Seconds</div>
+          </div>
+        </div>
+        <iframe
+          data-tally-src="https://tally.so/embed/3yppO0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          loading="lazy" width="100%" height="100" frameborder="0" marginheight="0" marginwidth="0"
+          title="BT Summer Together - Treasure Hunt submission"></iframe>
+      `;
+      loadTallyScript();
+    }
+
+    function renderDeadlinePassed() {
+      container.innerHTML = `
+        <h1>Submit the Treasure Hunt sentence!</h1>
+        <div style="font-size:2em; font-weight:700; color:#000;">Deadline passed!</div>
+        <img src="../images/lock.png" alt="page locked!" style="max-width: 100%; height: auto; margin-top: 1em;"/>
+      `;
+    }
+
+    function loadTallyScript() {
+      if (window.Tally) {
+        Tally.loadEmbeds();
+      } else if (!document.querySelector('script[src="https://tally.so/widgets/embed.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://tally.so/widgets/embed.js';
+        script.onload = () => Tally.loadEmbeds();
+        document.body.appendChild(script);
+      }
+    }
+
+    let currentPhase = '';
+
+    function updateCountdown() {
+      const now = new Date();
+
+      if (now >= finalDeadline) {
+        clearInterval(timerInterval);
+        renderDeadlinePassed();
+        return;
+      }
+
+      if (now < firstDeadline) {
+        // Time until firstDeadline
+        const diffMs = firstDeadline - now;
+
+        // More than 24 hours left: show days only
+        if (diffMs > 24 * 60 * 60 * 1000) {
+          if (currentPhase !== 'days') {
+            renderDaysCountdown();
+            currentPhase = 'days';
+          }
+          const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+          const daysEl = document.getElementById('days');
+          if (daysEl) daysEl.textContent = days;
+        } else {
+          // Less than or equal to 24 hours left: show hours + minutes (no seconds)
+          if (currentPhase !== 'hoursMinutes') {
+            renderHoursMinutesCountdown();
+            currentPhase = 'hoursMinutes';
+          }
+          const hours = Math.floor(diffMs / (1000 * 60 * 60));
+          const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+          const hoursEl = document.getElementById('hours');
+          const minutesEl = document.getElementById('minutes');
+          if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+          if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+        }
+      } else {
+        // After firstDeadline but before finalDeadline: show hours, minutes, seconds + tally
+        if (currentPhase !== 'afterStart') {
+          renderAfterStart();
+          currentPhase = 'afterStart';
+        }
+        const diffMs = finalDeadline - now;
+        const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
+        const seconds = Math.floor((diffMs / 1000) % 60);
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
+        if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
+        if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+      }
+    }
+
+    // Initial render depending on current time
+    const now = new Date();
+    if (now >= finalDeadline) {
+      renderDeadlinePassed();
+      currentPhase = 'deadlinePassed';
+    } else if (now >= firstDeadline) {
+      renderAfterStart();
+      currentPhase = 'afterStart';
+    } else {
+      // Decide days or hours+minutes
+      const diffMs = firstDeadline - now;
+      if (diffMs > 24 * 60 * 60 * 1000) {
+        renderDaysCountdown();
+        currentPhase = 'days';
+      } else {
+        renderHoursMinutesCountdown();
+        currentPhase = 'hoursMinutes';
+      }
+    }
+
+    const timerInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
