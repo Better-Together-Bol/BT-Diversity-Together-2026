@@ -253,18 +253,10 @@
 
   <!-- Main content -->
   <div class="container">
-  <!--  
-    <h1>Welcome to Diversity Together!</h1>
-    <p>Join <b>your team</b> and compete against your colleagues! Collect the most points and win the <b>grand prize</b>:</p>
-    <h2>A team activity of choice!</h2>
-    <br>
-
-   <img src="images/grandprize-v2.png" alt="Diversity Together Grand prize" class="grandprize" /> -->
-       
+         
     <div id="countdownWrapper">
       <h2>Diversity Together starts in...</h2>
 
-    
     <!-- Custom Countdown Timer -->
     <div id="countdown" class="countdown" aria-live="polite" aria-label="Countdown timer">
       <div class="time-block">
@@ -286,17 +278,21 @@
     </div>
     </div>
 
-    <!-- Buttons to link to all online challenges -->
+    <!-- Buttons to all relevant links -->
+    <div class="help-header">
+        <p>Quick links</p>
+    </div>
     <div id="lockedButtons" class="button-grid">
-      <a href="teams-overview" class="btn locked">Overview of all teams</a>
-      <a href="https://tally.so/r/q4j0p5" 
+      <a href="/online-challenges" class="btn locked">Online challenges</a>
+      <a href="/treasure-hunt" class="btn locked">Treasure Hunt</a>
+      <a href="/teams-overview" class="btn locked">Overview of all teams</a>
+      <!--<a href="https://tally.so/r/q4j0p5" 
          class="btn"
          target="_blank"
          rel="noopener noreferrer">
         Guess the country!
-      </a>
-      <a href="privacy-notice" class="btn locked">Privacy policy</a>
-      <a href="faq" class="btn locked">FAQ</a>
+      </a> -->
+      <a href="/privacy-notice" class="btn locked">Privacy policy</a>
     </div>
   
     <div class="help-section" role="region" aria-label="Help section">
@@ -358,12 +354,24 @@
       
         // Replace countdown with GIF
         document.getElementById('countdownWrapper').innerHTML = `
-          <div style="text-align:center;">
-            <img src="images/joe-rogan-ufc-rogan.gif" 
-                 alt="Surprise GIF" 
-                 style="max-width:100%; height:auto;"/>
-          </div>
-        `;
+
+        <h1>Welcome to Diversity Together!</h1>
+        <p>Join <b>your team</b> and compete against your colleagues! Collect the most points and win the <b>grand prize</b>:</p>
+      
+        <h2>A team activity of choice!</h2>
+        <br>
+      
+        <img src="images/grandprize-v2.png" 
+             alt="Diversity Together Grand prize" 
+             class="grandprize" />
+      
+        <div style="text-align:center; margin-top: 2em;">
+          <img src="images/readytorumble.gif" 
+               alt="Let's Go GIF" 
+               style="max-width:100%; height:auto;"/>
+        </div>
+      `;
+
       
         clearInterval(timerInterval);
         return;
