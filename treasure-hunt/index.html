@@ -1,281 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>BT Summer Together Treasure Hunt</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --font-h1: 2.5em;
-      --font-h2: 1.8em;
-      --font-body: 1.1em;
-      --font-small: 0.9em;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      margin: 0;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BT Diversity Together Online Challenges</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    color: #333;
+  }
+
+  /* Banner */
+  .banner {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
     .banner {
-      display: block;
-      width: 100%;
-      height: auto;
+      height: 110px;
       object-fit: cover;
     }
-    @media (max-width: 768px) {
-      .banner {
-        height: 110px;
-        object-fit: cover;
-      }
+  }
+
+  .container {
+    max-width: 700px;
+    margin: auto;
+    padding: 2em 1.5em;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: 0.4em;
+  }
+
+  p {
+    font-size: 1.1em;
+    margin-bottom: 1.5em;
+  }
+
+  .button-grid { 
+  width: 700px;
+  margin: 2em auto;
+  display: grid;
+  gap: 12px;
+
+  }
+
+  @media (max-width: 480px) {
+    .button-grid {
+      grid-template-columns: 1fr;
     }
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 2em;
-      text-align: center;
+  }
+
+  .btn {
+    display: block;
+    text-align: center;
+    background-color: #3159ed;
+    color: white;
+    padding: 0.75em;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+
+  .btn:hover {
+    background-color: #004a99;
+  }
+
+  .locked {
+    opacity: 0.5;
+    pointer-events: none;
+    position: relative;
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  /* Back button */
+  .back-container {
+    text-align: center;
+    margin: 2em 0;
+  }
+
+  .back-btn {
+    display: inline-block;
+    background-color: #3159ed;
+    color: white;
+    padding: 0.75em 1.5em;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .back-btn:hover {
+    background-color: #004a99;
+  }
+
+  .challenge {
+    grid-column: 1;
+    text-align: center;
+  }
+  
+  .challenge .timer {
+    display: block;
+    font-size: 0.8em;
+    margin-top: 4px;
+    opacity: 0.85;
+  }
+      
+  .challenge-row {
+    display: grid;
+    grid-template-columns: 500px 40px 160px;
+    align-items: center;
+    width: 700px;
+    margin: 0 auto;
+  }
+
+  .meta {
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+;
+  }
+
+  .lock {
+    grid-column: 2;
+    justify-self: center;
+    opacity: 0;
+  }
+
+  .challenge-row.locked .lock {
+    opacity: 1;
+  }
+
+  
+  @media (max-width: 600px) {
+    .challenge-row {
+      grid-template-columns: 1fr;
+      row-gap: 4px;
     }
-    h1 {
-      font-size: var(--font-h1);
-      color: #2a2a2a;
-      margin-bottom: 0.5em;
-      font-weight: 800;
-    }
-    h2 {
-      font-size: var(--font-h2);
-      font-weight: 600;
-      color: #2a2a2a;
-      margin-bottom: 0.5em;
-    }
-    p {
-      font-size: var(--font-body);
-      margin-bottom: 1.5em;
-      line-height: 1.7;
-    }
-    .countdown {
-      display: flex;
+  
+    .meta {
       justify-content: center;
-      gap: 1.5em;
-      margin: 2em auto;
-      user-select: none;
     }
-    .time-block {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 70px;
-    }
-    .time-value {
-      font-size: 4em;
-      font-weight: 700;
-      color: #000;
-      line-height: 1;
-    }
-    .time-label {
-      font-size: 1.1em;
-      font-weight: 600;
-      color: #555;
-      margin-top: 0.2em;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #666;
-      padding-bottom: 1em;
-    }
-    @media (max-width: 400px) {
-      .countdown {
-        gap: 1em;
-      }
-      .time-value {
-        font-size: 3em;
-      }
-      .time-block {
-        min-width: 50px;
-      }
-      .time-label {
-        font-size: 0.9em;
-      }
-    }
-    @media (max-width: 480px) {
-      h1 {
-      font-size: 1.8em;
-      }
-    }
-  </style>
+  }
+  
+</style>
 </head>
+
 <body>
 
-  <!-- Full-width banner -->
-  <img src="../images/bt-banner.png" alt="Summer Together Banner" class="banner" />
+<img src="../images/bt-banner.png" alt="Banner" class="banner">
 
-  <div class="container"></div>
+<div class="container">
+  <h1>Treasure Hunt</h1>
+  <p>Can you and your team solve all the riddles?</p>
+</div>
 
-  <script>
-    const firstDeadline = new Date('2025-06-23T07:00:00Z'); // 09:00 Amsterdam
-    const finalDeadline = new Date('2025-06-24T00:00:00Z'); // 02:00 Amsterdam
 
-    const container = document.querySelector('.container');
+<div class="button-grid">
 
-    // Render countdown with days only
-    function renderDaysCountdown() {
-      container.innerHTML = `
-        <h1>Submit the Treasure Hunt sentence!</h1>
-        <p>This page becomes available in:</p>
-        <div id="countdown" class="countdown" aria-live="polite" aria-label="Countdown timer">
-          <div class="time-block">
-            <div class="time-value" id="days">--</div>
-            <div class="time-label">Days</div>
-          </div>
-        </div>
-      `;
-    }
+  <!-- Day 1 -->
+  <div class="challenge-row">
+    <a href="https://tally.so/r/rjGrON"
+       class="btn challenge"
+       data-start="2026-06-01T07:00:00Z"
+       target="_blank"
+       rel="noopener noreferrer">
+      Treasure Hunt Day 1
+    </a>
+    <span class="lock">🔒</span>
+    <div class="meta">
+      <span class="timer"></span>
+    </div>
+  </div>
 
-    // Render countdown with hours and minutes only (no seconds)
-    function renderHoursMinutesCountdown() {
-      container.innerHTML = `
-        <h1>Submit the Treasure Hunt sentence!</h1>
-        <p>This page becomes available in:</p>
-        <div id="countdown" class="countdown" aria-live="polite" aria-label="Countdown timer">
-          <div class="time-block">
-            <div class="time-value" id="hours">--</div>
-            <div class="time-label">Hours</div>
-          </div>
-          <div class="time-block">
-            <div class="time-value" id="minutes">--</div>
-            <div class="time-label">Minutes</div>
-          </div>
-        </div>
-      `;
-    }
+  <!-- Day 2 -->
+  <div class="challenge-row">
+    <a href="https://tally.so/r/vGExYv"
+       class="btn challenge"
+       data-start="2026-06-02T07:00:00Z"
+       target="_blank"
+       rel="noopener noreferrer">
+      Treasure Hunt Day 2
+    </a>
+    <span class="lock">🔒</span>
+    <div class="meta">
+      <span class="timer"></span>
+    </div>
+  </div>
 
-    // Render countdown with hours, minutes, seconds + tally form
-    function renderAfterStart() {
-      container.innerHTML = `
-        <h1>Submit the Treasure Hunt sentence!</h1>
-        <p>Time left to submit the Treasure Hunt answer:</p>
-        <div id="countdown" class="countdown" aria-live="polite" aria-label="Countdown timer">
-          <div class="time-block">
-            <div id="hours" class="time-value">--</div>
-            <div class="time-label">Hours</div>
-          </div>
-          <div class="time-block">
-            <div id="minutes" class="time-value">--</div>
-            <div class="time-label">Minutes</div>
-          </div>
-          <div class="time-block">
-            <div id="seconds" class="time-value">--</div>
-            <div class="time-label">Seconds</div>
-          </div>
-        </div>
-        <iframe
-          data-tally-src="https://tally.so/embed/3yppO0?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-          loading="lazy" width="100%" height="100" frameborder="0" marginheight="0" marginwidth="0"
-          title="BT Summer Together - Treasure Hunt submission"></iframe>
-      `;
-      loadTallyScript();
-    }
+  <!-- Day 3 -->
+  <div class="challenge-row">
+    <a href="https://tally.so/r/2E1xNL"
+       class="btn challenge"
+       data-start="2026-06-03T07:00:00Z"
+       target="_blank"
+       rel="noopener noreferrer">
+      Treasure Hunt Day 3
+    </a>
+    <span class="lock">🔒</span>
+    <div class="meta">
+      <span class="timer"></span>
+    </div>
+  </div>
 
-    function renderDeadlinePassed() {
-      container.innerHTML = `
-        <h1>Submit the Treasure Hunt sentence!</h1>
-        <div style="font-size:2em; font-weight:700; color:#000;">Deadline passed!</div>
-        <img src="../images/lock.png" alt="page locked!" style="max-width: 100%; height: auto; margin-top: 1em;"/>
-      `;
-    }
+  <!-- Day 4 -->
+  <div class="challenge-row">
+    <a href="https://tally.so/r/aQKrYq"
+       class="btn challenge"
+       data-start="2026-06-04T07:00:00Z"
+       target="_blank"
+       rel="noopener noreferrer">
+      Treasure Hunt Day 4
+    </a>
+    <span class="lock">🔒</span>
+    <div class="meta">
+      <span class="timer"></span>
+    </div>
+  </div>
 
-    function loadTallyScript() {
-      if (window.Tally) {
-        Tally.loadEmbeds();
-      } else if (!document.querySelector('script[src="https://tally.so/widgets/embed.js"]')) {
-        const script = document.createElement('script');
-        script.src = 'https://tally.so/widgets/embed.js';
-        script.onload = () => Tally.loadEmbeds();
-        document.body.appendChild(script);
-      }
-    }
+  <!-- Day 5 -->
+  <div class="challenge-row">
+    <a href="https://tally.so/r/yPjq64"
+       class="btn challenge"
+       data-start="2026-06-05T07:00:00Z"
+       target="_blank"
+       rel="noopener noreferrer">
+      Treasure Hunt Day 5
+    </a>
+    <span class="lock">🔒</span>
+    <div class="meta">
+      <span class="timer"></span>
+    </div>
+  </div>
 
-    let currentPhase = '';
+  <!-- Day 6 -->
+  <div class="challenge-row">
+    <a href="https://tally.so/r/ZjvRNy"
+       class="btn challenge"
+       data-start="2026-06-09T07:00:00Z"
+       target="_blank"
+       rel="noopener noreferrer">
+      Treasure Hunt Day 6
+    </a>
+    <span class="lock">🔒</span>
+    <div class="meta">
+      <span class="timer"></span>
+    </div>
+  </div>
 
-    function updateCountdown() {
-      const now = new Date();
+  <!-- Full sentence -->
+  <div class="challenge-row">
+    <a href="https://tally.so/r/aQKr6q"
+       class="btn challenge"
+       data-start="2026-06-09T07:00:00Z"
+       target="_blank"
+       rel="noopener noreferrer">
+      Treasure Hunt Full Sentence
+    </a>
+    <span class="lock">🔒</span>
+    <div class="meta">
+      <span class="timer"></span>
+    </div>
+  </div>
 
-      if (now >= finalDeadline) {
-        clearInterval(timerInterval);
-        renderDeadlinePassed();
-        return;
-      }
+</div>
 
-      if (now < firstDeadline) {
-        // Time until firstDeadline
-        const diffMs = firstDeadline - now;
+<div class="back-container">
+  <a href="../index.html" class="back-btn">⬅ Back to Landing Page</a>
+</div>
 
-        // More than 24 hours left: show days only
-        if (diffMs > 24 * 60 * 60 * 1000) {
-          if (currentPhase !== 'days') {
-            renderDaysCountdown();
-            currentPhase = 'days';
-          }
-          const days = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-          const daysEl = document.getElementById('days');
-          if (daysEl) daysEl.textContent = days;
-        } else {
-          // Less than or equal to 24 hours left: show hours + minutes (no seconds)
-          if (currentPhase !== 'hoursMinutes') {
-            renderHoursMinutesCountdown();
-            currentPhase = 'hoursMinutes';
-          }
-          const hours = Math.floor(diffMs / (1000 * 60 * 60));
-          const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
-          const hoursEl = document.getElementById('hours');
-          const minutesEl = document.getElementById('minutes');
-          if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
-          if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
-        }
+<script>
+function updateChallenges() {
+  const now = new Date();
+
+  document.querySelectorAll('.challenge').forEach(btn => {
+    const row = btn.closest('.challenge-row');
+    const timerEl = row.querySelector('.timer');
+
+    const start = new Date(btn.dataset.start);
+    const end = new Date(start.getTime() + 24 * 60 * 60 * 1000);
+
+    if (now < start) {
+      const diff = start - now;
+
+      if (diff < 86400000) {
+        const hours = Math.ceil(diff / (1000 * 60 * 60));
+        timerEl.textContent = `Available in ${hours}h`;
       } else {
-        // After firstDeadline but before finalDeadline: show hours, minutes, seconds + tally
-        if (currentPhase !== 'afterStart') {
-          renderAfterStart();
-          currentPhase = 'afterStart';
-        }
-        const diffMs = finalDeadline - now;
-        const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diffMs / (1000 * 60)) % 60);
-        const seconds = Math.floor((diffMs / 1000) % 60);
-        const hoursEl = document.getElementById('hours');
-        const minutesEl = document.getElementById('minutes');
-        const secondsEl = document.getElementById('seconds');
-        if (hoursEl) hoursEl.textContent = hours.toString().padStart(2, '0');
-        if (minutesEl) minutesEl.textContent = minutes.toString().padStart(2, '0');
-        if (secondsEl) secondsEl.textContent = seconds.toString().padStart(2, '0');
+        const days = Math.ceil(diff / 86400000);
+        timerEl.textContent = `Available in ${days} day${days > 1 ? 's' : ''}`;
       }
-    }
 
-    // Initial render depending on current time
-    const now = new Date();
-    if (now >= finalDeadline) {
-      renderDeadlinePassed();
-      currentPhase = 'deadlinePassed';
-    } else if (now >= firstDeadline) {
-      renderAfterStart();
-      currentPhase = 'afterStart';
-    } else {
-      // Decide days or hours+minutes
-      const diffMs = firstDeadline - now;
-      if (diffMs > 24 * 60 * 60 * 1000) {
-        renderDaysCountdown();
-        currentPhase = 'days';
-      } else {
-        renderHoursMinutesCountdown();
-        currentPhase = 'hoursMinutes';
-      }
-    }
+      row.classList.add('locked');
+    } 
+    else if (now >= start && now < end) {
+      const diff = end - now;
 
-    const timerInterval = setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+
+      timerEl.textContent = `${hours}h ${minutes}m left`;
+
+      row.classList.remove('locked');
+    } 
+    else {
+      timerEl.textContent = "Submission closed";
+      row.classList.add('locked');
+    }
+  });
+}
+
+setInterval(updateChallenges, 1000);
+updateChallenges();
+</script>
+
+<script>
+document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+
+<script>
+document.addEventListener('keydown', function(e) {
+  if (e.key === "F12" ||
+      (e.ctrlKey && e.shiftKey && e.key === "I") ||
+      (e.ctrlKey && e.key === "U")) {
+    e.preventDefault();
+  }
+});
+</script>
+
 </body>
 </html>
