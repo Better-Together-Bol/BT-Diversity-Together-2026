@@ -142,14 +142,28 @@
 
   
   @media (max-width: 600px) {
-    .challenge-row {
-      grid-template-columns: 1fr;
-      row-gap: 4px;
-    }
-  
-    .meta {
-      justify-content: center;
-    }
+
+  .challenge-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    font-size: 1em;
+    padding: 0.9em;
+  }
+
+  .meta {
+    justify-content: center;
+  }
+
+  .lock {
+    order: 3;
+    opacity: 1; /* always visible when locked */
+  }
   }
   
 </style>
