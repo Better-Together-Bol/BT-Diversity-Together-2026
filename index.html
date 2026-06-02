@@ -142,9 +142,17 @@
     .easter-egg-wrapper {
       display: flex;
       justify-content: center;
-      margin: 20px 0;
+      align-items: center;
+      height: 0px;                 
+      margin: 0;
+      overflow: hidden;
+      transition: height 0.3s ease, margin 0.3s ease;
+    }
+    
+    /* Expanded state */
+    .easter-egg-wrapper.active {
       height: 120px;
-      position: relative;
+      margin: 20px 0;
     }
     
     #eggLink {
@@ -439,17 +447,16 @@
 
     const egg = document.getElementById('easterEgg');
     const link = document.getElementById('eggLink');
+    const wrapper = document.querySelector('.easter-egg-wrapper');
     
     document.addEventListener('mousemove', (e) => {
-      
-    if (!egg || !link) return;
     
-      // Only activate once buttons are visible
+      if (!egg || !link || !wrapper) return;
+    
       const buttonsVisible = window.getComputedStyle(document.getElementById('lockedButtons')).display === 'grid';
-    
       if (!buttonsVisible) return;
-
-      const rect = document.querySelector('.easter-egg-wrapper').getBoundingClientRect();
+    
+      const rect = wrapper.getBoundingClientRect();
     
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
@@ -459,17 +466,19 @@
     
       const distance = Math.sqrt(dx * dx + dy * dy);
     
-      const triggerDistance = 120; // ~2–3 cm
+      const triggerDistance = 140; // slightly larger for comfort
     
       if (distance < triggerDistance) {
+        wrapper.classList.add('active');      // ✅ expand space
         egg.classList.add('visible');
     
-        // 👉 "Shy" effect: move slightly away from cursor
         const moveX = -dx * 0.3;
         const moveY = -dy * 0.3;
     
         egg.style.transform = `translate(${moveX}px, ${moveY}px) scale(1)`;
+    
       } else {
+        wrapper.classList.remove('active');   // ✅ collapse again
         egg.classList.remove('visible');
         egg.style.transform = `translate(0, 0) scale(0.8)`;
       }
