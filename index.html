@@ -178,14 +178,14 @@
 
     @media (max-width: 768px) {
     .easter-egg-wrapper {
-      height: 80px;
-      margin: 20px 0;
+      height: 0px;
+      margin: 0;
     }
   
     #easterEgg {
-      opacity: 1;
-      pointer-events: auto;
-      transform: scale(0.9);
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.8);
     }
   
     #easterEgg.visible {
@@ -523,6 +523,31 @@
         egg.style.transform = 'scale(0.8)';
       }
     });
+
+    function handleMobileEggReveal() {
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) return;
+  
+    const buttonsVisible =
+      window.getComputedStyle(document.getElementById('lockedButtons')).display === 'grid';
+    if (!buttonsVisible) return;
+  
+    const rect = wrapper.getBoundingClientRect();
+    const triggerPoint = window.innerHeight * 0.8;
+  
+    if (rect.top < triggerPoint && rect.bottom > 0) {
+      wrapper.classList.add('active');
+      egg.classList.add('visible');
+    } else {
+      wrapper.classList.remove('active');
+      egg.classList.remove('visible');
+    }
+  }
+  
+  // Run on scroll + load
+  window.addEventListener('scroll', handleMobileEggReveal);
+  window.addEventListener('load', handleMobileEggReveal);
+    
   </script>
 
 </body>
