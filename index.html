@@ -176,6 +176,23 @@
       cursor: pointer;
     }
 
+    @media (max-width: 768px) {
+    .easter-egg-wrapper {
+      height: 80px;
+      margin: 20px 0;
+    }
+  
+    #easterEgg {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(0.9);
+    }
+  
+    #easterEgg.visible {
+      transform: scale(1);
+    }
+  }
+
     @media (max-width: 400px) {
       .countdown {
         gap: 1em;
@@ -457,6 +474,8 @@
       if (!buttonsVisible) return;
     
       const rect = wrapper.getBoundingClientRect();
+
+      const isBelow = e.clientY > rect.bottom;
     
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
@@ -468,7 +487,7 @@
     
       const triggerDistance = 140; // slightly larger for comfort
     
-      if (distance < triggerDistance) {
+      if (distance < triggerDistance && !isBelow) {
         wrapper.classList.add('active');      // ✅ expand space
         egg.classList.add('visible');
     
@@ -481,6 +500,27 @@
         wrapper.classList.remove('active');   // ✅ collapse again
         egg.classList.remove('visible');
         egg.style.transform = `translate(0, 0) scale(0.8)`;
+      }
+    });
+
+    // Mobile support
+    let eggVisible = false;
+    
+    wrapper.addEventListener('touchstart', () => {
+      const buttonsVisible =
+        window.getComputedStyle(document.getElementById('lockedButtons')).display === 'grid';
+      if (!buttonsVisible) return;
+    
+      eggVisible = !eggVisible;
+    
+      if (eggVisible) {
+        wrapper.classList.add('active');
+        egg.classList.add('visible');
+        egg.style.transform = 'scale(1)';
+      } else {
+        wrapper.classList.remove('active');
+        egg.classList.remove('visible');
+        egg.style.transform = 'scale(0.8)';
       }
     });
   </script>
