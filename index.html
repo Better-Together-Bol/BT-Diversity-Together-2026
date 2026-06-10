@@ -273,14 +273,18 @@
     .btn:hover {
       background-color: #004a99;
     }
-
-    
+      
     .button-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: -2em;
-      margin-bottom: 2em;
+      gap: 12px;
+      margin-top: 1em;
+    }
+
+    @media (max-width: 480px) {
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     #lockedText,
@@ -324,13 +328,35 @@
   <!-- Full-width banner -->
   <img src="images/bt-banner.png" alt="Better Together Banner" class="banner" />
 
-  <!-- Main content -->
+  <div class="container">
+  
+    <h1>The competition is over!</h1>
+    <p>We hope you enjoyed Diversity Together</p>
+    <h2>And the winner is...</h2>
+    <img src="images/nailbiting.gif" alt="Animated suspense before winner announcement">
+
+    <h3>Why don't you listen to the Diversity Together playlist while you wait? It's based on your submissions!</h3>
+    <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/66hWT2eFRHPsfYRon4Q7CZ?utm_source=generator&si=0e10a94aeddf49da" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  
+  </div>
+    
+  <div class="container">
+    <h3>Quick links</h3>
+  
+    <div class="button-grid">
+      <a href="/BT-Diversity-Together-2026/faq/" class="btn">FAQ</a>
+      <a href="/BT-Diversity-Together-2026/privacy-notice/" class="btn">Privacy policy</a>
+    </div>
+  </div>
+
+  <!--
+
   <div class="container">
          
     <div id="countdownWrapper">
       <h1>Diversity Together starts in...</h1>
 
-    <!-- Custom Countdown Timer -->
+
     <div id="countdown" class="countdown" aria-live="polite" aria-label="Countdown timer">
       <div class="time-block">
         <div id="days" class="time-value">--</div>
@@ -351,7 +377,7 @@
     </div>
     </div>
 
-    <!-- Buttons to all relevant links -->
+
     <div id="lockedText" class="container">
         <h3>Quick links</h3>
     </div>
@@ -392,6 +418,8 @@
        <div class="help-header">
           <p>Still need help? <a href="#tally-open=3ypEk4&tally-hide-title=1&tally-emoji-text=👋&tally-emoji-animation=wave&tally-auto-close=3000">Contact us!</a></p>
       </div>
+
+    -->
        
     <!--
     <div class="help-header">
@@ -410,12 +438,12 @@
         <div class="btn-group">
           <a href="privacy-notice" class="btn" aria-label="Privacy policy">Privacy policy</a>
         </div>
-    </div>
-        -->
+    </div> 
     </div>
   </div>
+  -->
       
-
+  <!--
   <script>
     const targetDate = new Date('2026-06-01T07:00:00Z'); // 09:00 Amsterdam time (UTC+2)
   
@@ -549,6 +577,6 @@
   window.addEventListener('load', handleMobileEggReveal);
     
   </script>
-
+-->
 </body>
 </html>
